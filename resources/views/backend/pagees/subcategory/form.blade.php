@@ -6,7 +6,7 @@
 <div class="container">
     <div class="row justify-content-center" >
         <div class="col-lg-5">
-            <form action="" method="post">
+            <form action="{{route('subcat.store')}}" method="post">
                 @csrf
                 <div class="form-group">
                 <label for="subcategory">Sub-Category Name</label>

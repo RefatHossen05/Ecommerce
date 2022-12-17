@@ -5,23 +5,25 @@
 <div class="container">
     <div class="row justify-content-center" >
         <div class="col-lg-5 bg-secondary text-white py-2">
-            <form action="{{route('product.store')}}" method="post" enctype="multipart/form-data">
+            <form action="{{route('product.update',$products->id)}}" method="post" enctype="multipart/form-data">
             @csrf
+            @method("PUT")
             <div class="form-group mb-2">
             <label for="product_name" class="mb-2">Product Name</label>
-            <input type="text" class="form-control" name="product_name" placeholder="Plase Enter product name" id="product_name">
+            <input type="text" class="form-control" name="product_name" placeholder="Plase Enter product name" id="product_name" value="{{$products->product_name}}">
             </div>
             <div class="form-group mb-2">
             <label for="pro_war" class="mb-2">Product Warenty</label>
-            <input type="text" class="form-control" name="product_warenty" placeholder="Plase Enter Product Warenty" id="pro_war">
+            <input type="text" class="form-control" name="product_warenty" placeholder="Plase Enter Product Warenty" id="pro_war" value="{{$products->product_warenty}}">
             </div>
             <div class="form-group mb-2">
             <label for="stock_status" class="mb-2">Stock Status</label>
-            <input type="text" class="form-control" name="stock_status" placeholder="stock_status" id="stock_status">
+            <input type="text" class="form-control" name="stock_status" placeholder="stock_status" id="stock_status" value="{{$products->stock_status}}">
             </div>
             <div class="form-group mb-2">
             <label for="image" class="mb-2">Image</label>
             <input type="file" class="form-control" name="image" placeholder="" id="image">
+            <img src="{{url('/uploads/product/'.$products->image)}}" alt="image not found" height="70px" width="70px">
             </div>
 
 

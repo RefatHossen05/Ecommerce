@@ -1,5 +1,6 @@
 <?php
 
+                # start backend Controller
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\backend\DashboardController;
 use App\Http\Controllers\backend\CategoryController;
@@ -11,9 +12,10 @@ use App\Http\Controllers\backend\PurchaseController;
 use App\Http\Controllers\backend\BillingController;
 use App\Http\Controllers\backend\SubcategoryController;
 use App\Http\Controllers\auth\AuthController;
+            # End backend Cotroller
 
 
-
+ 
 
 /*
 |--------------------------------------------------------------------------
@@ -26,14 +28,30 @@ use App\Http\Controllers\auth\AuthController;
 |
 */
 
-Route::get('/', function () {
-    return view('backend.master');
-});
-
-Route::get('/dashboard',[DashboardController::class,'dashboard'])->name('dashboard');
 
                                 #AuthController
 Route::get('/regform',[AuthController::class,'regform'])->name('regform');
+Route::post('/regformstore',[AuthController::class,'regsubmit'])->name('regform.submit');
+
+Route::get('/login',[AuthController::class,'login'])->name('login');
+Route::post('/loginsubmit',[AuthController::class,'loginsubmit'])->name('login.submit');
+
+Route::group(['middleware'=>'auth'],function(){
+
+    Route::get('/logout',[AuthController::class,'logout'])->name('logout');
+
+
+
+     
+Route::get('/', function () {
+    return view('backend.master');
+});
+ 
+                            # start backend Route
+
+
+Route::get('/dashboard',[DashboardController::class,'dashboard'])->name('dashboard');
+
 
 
                                 #CategoryController
@@ -48,12 +66,21 @@ Route::put('/categoryupdate/{id}',[CategoryController::class,'updateform'])->nam
 
 
 
+                                #SubcategoryController
+Route::get('/subcategorylist',[SubcategoryController::class,'subcategorylist'])->name('subcategory.list');
+Route::get('/subcategoryform',[SubcategoryController::class,'subcategoryform'])->name('subcategory.form');
+Route::post('/subcategorystore',[SubcategoryController::class,'subcatstore'])->name('subcat.store');
 
 
 
                                 #ProductController
 Route::get('/productlist',[ProductController::class,'productlist'])->name('product.list');
 Route::get('/productform',[ProductController::class,'productform'])->name('product.form');
+Route::post('/productstore',[ProductController::class,'productstore'])->name('product.store');
+Route::get('/productdelete/{id}',[ProductController::class,'productdelete'])->name('product.delete');
+Route::get('/productedit/{id}',[ProductController::class,'productedit'])->name('product.edit');
+Route::put('/productupdate/{id}',[ProductController::class,'productupdate'])->name('product.update');
+
 
 
 
@@ -94,6 +121,8 @@ Route::get('/feedbacklist',[FeedbackController::class,'feedbacklist'])->name('fe
 Route::get('/feedbackform',[FeedbackController::class,'feedbackform'])->name('feedback.form');
 
 
-                                #SubcategoryController
-Route::get('/subcategorylist',[SubcategoryController::class,'subcategorylist'])->name('subcategory.list');
-Route::get('/subcategoryform',[SubcategoryController::class,'subcategoryform'])->name('subcategory.form');
+
+});
+
+                                #End backend Route
+

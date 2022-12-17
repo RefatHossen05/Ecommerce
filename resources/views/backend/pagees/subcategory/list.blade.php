@@ -4,6 +4,16 @@
 <a href="{{route('subcategory.form')}}" class="btn btn-success">Add list</a>
 
 <h1 class="bg-warning text-center p-2 my-2">Sub Category List</h1>
+
+@if($message =session()->get('success'))
+<div class="alert alert-success alert-block">
+<strong>
+ {{$message}}
+</strong>
+</div>
+@endif
+
+
 <table class="table table-bordered">
 <thead class="text-center">
     <tr>
