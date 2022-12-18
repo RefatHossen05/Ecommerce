@@ -36,7 +36,7 @@ Route::post('/regformstore',[AuthController::class,'regsubmit'])->name('regform.
 Route::get('/login',[AuthController::class,'login'])->name('login');
 Route::post('/loginsubmit',[AuthController::class,'loginsubmit'])->name('login.submit');
 
-Route::group(['middleware'=>'auth'],function(){
+Route::group(['middleware'=>'admin'],function(){
 
     Route::get('/logout',[AuthController::class,'logout'])->name('logout');
 
