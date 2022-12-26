@@ -24,11 +24,16 @@
 </thead>
 
 <tbody>
+@foreach($subcategories as $key=>$subcategory)
     <tr>
-        <td></td>
-        <td></td>
-        <td></td>
+        <td>{{$key+1}}</td>
+        <td>{{$subcategory->subcategory_name}}</td>
+        <td class="text-center">
+            <a href="{{route('subcategory.edit',$subcategory->id)}}" class="btn btn-info">Edit</a>
+            <a href="{{route('subcategory.delete', $subcategory->id)}}" class="btn btn-danger">Delete</a>
+        </td>
     </tr>
+@endforeach
 </tbody>
 
 

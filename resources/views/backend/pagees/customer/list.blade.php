@@ -1,18 +1,19 @@
 @extends('backend.master')
 
 @section('content')
-<a href="" class="btn btn-success">Add list</a>
+<a href="{{route('customer.form')}}" class="btn btn-success my-2">Add list</a>
 
 
 <table class="table table-bordered">
 <thead>
     <tr>
-        <th>Category id</th>
-        <th>Category Name</th>
+        <th>Customer id</th>
+        <th>Customer Name</th>
     </tr>
 </thead>
 
 <tbody>
+@foreach($)
     <tr>
         <td></td>
         <td></td>

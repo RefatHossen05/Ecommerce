@@ -5,6 +5,7 @@ namespace App\Http\Controllers\backend;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Product;
+use Illuminate\Support\Facades\File;
 
 class ProductController extends Controller
 {
@@ -44,13 +45,15 @@ class ProductController extends Controller
     }
 
     public function productupdate(Request $request,$id){
-        $filename=null;
+        $products = Product::find($id);
+        $filename=$products->image;
         if($request->hasfile('image')){
+            $removefile = public_path().'/uploads/product/'.$filename;
+            File::delete($removefile);
             $filename =date('Ymdhmsis').'.'.$request->file('image')->getClientOriginalExtension();
-
             $request->file('image')->storeAs('/uploads/product/',$filename);
         }
-        $products = Product::find($id);
+    
         $products->update([
             'product_name'=>$request->product_name,
             'product_warenty'=>$request->product_warenty,

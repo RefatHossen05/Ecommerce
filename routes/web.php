@@ -12,10 +12,10 @@ use App\Http\Controllers\backend\PurchaseController;
 use App\Http\Controllers\backend\BillingController;
 use App\Http\Controllers\backend\SubcategoryController;
 use App\Http\Controllers\auth\AuthController;
-            # End backend Cotroller
+            # End backend Controller
 
 
- 
+  
 
 /*
 |--------------------------------------------------------------------------
@@ -70,6 +70,9 @@ Route::put('/categoryupdate/{id}',[CategoryController::class,'updateform'])->nam
 Route::get('/subcategorylist',[SubcategoryController::class,'subcategorylist'])->name('subcategory.list');
 Route::get('/subcategoryform',[SubcategoryController::class,'subcategoryform'])->name('subcategory.form');
 Route::post('/subcategorystore',[SubcategoryController::class,'subcatstore'])->name('subcat.store');
+Route::get('/subcategorydelete/{id}',[SubcategoryController::class,'subcategorydelete'])->name('subcategory.delete');
+Route::get('/subcategoryedit/{id}',[SubcategoryController::class,'subcategoryedit'])->name('subcategory.edit');
+Route::put('/subcategoryupdate/{id}',[SubcategoryController::class,'subcategoryupdate'])->name('subcategory.update');
 
 
 
@@ -89,6 +92,10 @@ Route::put('/productupdate/{id}',[ProductController::class,'productupdate'])->na
                                 #CustomerController
 Route::get('/customerlist',[CustomerController::class,'customerlist'])->name('customer.list');
 Route::get('/customerform',[CustomerController::class,'customerform'])->name('customer.form');
+Route::post('/customerstore',[CustomerController::class,'customerstore'])->name('customer.store');
+Route::get('/customerdelete/{id}',[CustomerController::class,'customerdelete'])->name('customer.delete');
+Route::get('/customeredit/{id}',[CustomerController::class,'customeredit'])->name('customer.edit');
+Route::put('/customerupdate/{id}',[CustomerController::class,'customerupdate'])->name('customer.update');
 
 
 

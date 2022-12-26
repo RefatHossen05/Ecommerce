@@ -9,7 +9,8 @@ use App\Models\Subcategory;
 class SubcategoryController extends Controller
 {
     public function subcategorylist(){
-        return view('backend.pagees.subcategory.list');
+        $subcategories = Subcategory::all();
+        return view('backend.pagees.subcategory.list',compact('subcategories'));
     }
 
     public function subcategoryform(){
@@ -22,4 +23,27 @@ class SubcategoryController extends Controller
         ]);
         return to_route('subcategory.list')->with('success','Created Successful');
     }
-}
+
+    public function subcategorydelete($id){
+        Subcategory::find($id)->delete();
+        return back();
+    }
+    public function subcategoryedit($id){
+        $subcategories = Subcategory::find($id);
+        return view('backend.pagees.subcategory.edit',compact('subcategories'));
+    }
+
+    public function subcategoryupdate(Request $request,$id){
+        $subcate = Subcategory::find($id);
+
+        $subcate->update([
+            'subcategory_name'=>$request->subcategory_name,
+        ]);
+        return to_route('subcategory.list');
+
+
+    }
+
+} 
+
+
